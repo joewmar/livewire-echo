@@ -1,0 +1,53 @@
+Install breeze
+    - composer require laravel/breeze --dev
+    - php artisan breeze:install livewire
+    - npm run dev
+
+
+Create models 
+    - 2024_02_14_140809_create_messages_table
+    - $table->foreignId('conversation_id')->constrained();
+    - $table->unsignedBigInteger('sender_id');
+    - $table->unsignedBigInteger('receiver_id');
+    - $table->foreign('sender_id')->references('id')->on('users');
+    - $table->foreign('receiver_id')->references('id')->on('users');
+    - $table->boolean('read')->default(0)->nullable();
+    - $table->text('body')->nullable();
+    - 2024_02_14_140831_create_conversations_table
+    - $table->unsignedBigInteger('sender_id');
+    - $table->unsignedBigInteger('receiver_id');
+    - $table->foreign('sender_id')->references('id')->on('users');
+    - $table->foreign('receiver_id')->references('id')->on('users');
+    - $table->timestamp('last_time_message')->nullable();
+
+Create Relationships
+    - Conversation
+    - public function message()
+    - public function user()
+    - Messege.php
+    - public function conversation()
+    - public function user()
+
+Install and make Livewire components
+    - @livewireStyles
+    - @livewireScripts
+    - php artisan make:livewire Chat.Chatbox
+    - php artisan make:livewire Chat.ChatList
+    - php artisan make:livewire Chat.CreateChat
+    - php artisan make:livewire Chat.Main
+    - php artisan make:livewire Chat.SendMessage
+    - Route::get('users', CreateChat::class)->name('users');
+    - Route::get('chat{key?}', Main::class)->name('chat');
+
+Setup livewire structure
+    - To call the component: @livewire('subfolder.file')
+
+Download prepos SASS compiler
+
+down css javascripts
+    - <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    - <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    - bootstrap ICON: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    - jQuery: <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    - include-media
+
